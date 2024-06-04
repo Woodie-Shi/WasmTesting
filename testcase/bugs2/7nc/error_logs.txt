@@ -1,0 +1,59 @@
+Source path: ['/home/nju/WASM-testing/src/temp/5/func.c', '/home/nju/WASM-testing/src/temp/5/driver.c']
+Option: -O2-mllvm -opt-bisect-limit=10
+Output:
+
+fatal error: error in backend: section size does not fit in a uint32_t
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.	Program arguments: /home/nju/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/home/nju/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Werror=implicit-function-declaration -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -w /home/nju/WASM-testing/src/temp/5/driver.c -c -o /tmp/emscripten_temp_1j45g5cq/driver_1.o
+1.	<eof> parser at end of file
+2.	Code generation
+ #0 0x00005569cff14cd8 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) (/home/nju/emsdk/upstream/bin/clang+0x2e5acd8)
+ #1 0x00005569cff121de llvm::sys::RunSignalHandlers() (/home/nju/emsdk/upstream/bin/clang+0x2e581de)
+ #2 0x00005569cff13f2f llvm::sys::CleanupOnSignal(unsigned long) (/home/nju/emsdk/upstream/bin/clang+0x2e59f2f)
+ #3 0x00005569cfe7238e (anonymous namespace)::CrashRecoveryContextImpl::HandleCrash(int, unsigned long) (.llvm.18266623704652747455) CrashRecoveryContext.cpp:0:0
+ #4 0x00005569cfe7234b (/home/nju/emsdk/upstream/bin/clang+0x2db834b)
+ #5 0x00005569cff0eb7b (/home/nju/emsdk/upstream/bin/clang+0x2e54b7b)
+ #6 0x00005569cec303c3 (/home/nju/emsdk/upstream/bin/clang+0x1b763c3)
+ #7 0x00005569cfe768b0 llvm::report_fatal_error(llvm::Twine const&, bool) (/home/nju/emsdk/upstream/bin/clang+0x2dbc8b0)
+ #8 0x00005569cfe76776 (/home/nju/emsdk/upstream/bin/clang+0x2dbc776)
+ #9 0x00005569cfca2abd (anonymous namespace)::WasmObjectWriter::writeOneObject(llvm::MCAssembler&, llvm::MCAsmLayout const&, (anonymous namespace)::WasmObjectWriter::DwoMode) WasmObjectWriter.cpp:0:0
+#10 0x00005569cfc997b3 (anonymous namespace)::WasmObjectWriter::writeObject(llvm::MCAssembler&, llvm::MCAsmLayout const&) (.llvm.15432256652527252286) WasmObjectWriter.cpp:0:0
+#11 0x00005569cfc678a0 llvm::MCObjectStreamer::finishImpl() (/home/nju/emsdk/upstream/bin/clang+0x2bad8a0)
+#12 0x00005569d0f053a4 llvm::AsmPrinter::doFinalization(llvm::Module&) (/home/nju/emsdk/upstream/bin/clang+0x3e4b3a4)
+#13 0x00005569cf9ea0b1 llvm::FPPassManager::doFinalization(llvm::Module&) (/home/nju/emsdk/upstream/bin/clang+0x29300b1)
+#14 0x00005569cf9e1d21 llvm::legacy::PassManagerImpl::run(llvm::Module&) (/home/nju/emsdk/upstream/bin/clang+0x2927d21)
+#15 0x00005569d0788eca clang::EmitBackendOutput(clang::DiagnosticsEngine&, clang::HeaderSearchOptions const&, clang::CodeGenOptions const&, clang::TargetOptions const&, clang::LangOptions const&, llvm::StringRef, llvm::Module*, clang::BackendAction, llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>, std::__2::unique_ptr<llvm::raw_pwrite_stream, std::__2::default_delete<llvm::raw_pwrite_stream>>, clang::BackendConsumer*) (/home/nju/emsdk/upstream/bin/clang+0x36ceeca)
+#16 0x00005569d07a23d3 clang::BackendConsumer::HandleTranslationUnit(clang::ASTContext&) (/home/nju/emsdk/upstream/bin/clang+0x36e83d3)
+#17 0x00005569d1c1b869 clang::ParseAST(clang::Sema&, bool, bool) (/home/nju/emsdk/upstream/bin/clang+0x4b61869)
+#18 0x00005569d0c34ae1 clang::FrontendAction::Execute() (/home/nju/emsdk/upstream/bin/clang+0x3b7aae1)
+#19 0x00005569d0b900a0 clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) (/home/nju/emsdk/upstream/bin/clang+0x3ad60a0)
+#20 0x00005569d0d3558a clang::ExecuteCompilerInvocation(clang::CompilerInstance*) (/home/nju/emsdk/upstream/bin/clang+0x3c7b58a)
+#21 0x00005569cec2ed0f cc1_main(llvm::ArrayRef<char const*>, char const*, void*) (/home/nju/emsdk/upstream/bin/clang+0x1b74d0f)
+#22 0x00005569cec2c6c3 ExecuteCC1Tool(llvm::SmallVectorImpl<char const*>&, llvm::ToolContext const&) driver.cpp:0:0
+#23 0x00005569d09f4c09 void llvm::function_ref<void ()>::callback_fn<clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<char>>*, bool*) const::$_0>(long) Job.cpp:0:0
+#24 0x00005569cfe7232c llvm::CrashRecoveryContext::RunSafely(llvm::function_ref<void ()>) (/home/nju/emsdk/upstream/bin/clang+0x2db832c)
+#25 0x00005569d09f4655 clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<char>>*, bool*) const (/home/nju/emsdk/upstream/bin/clang+0x393a655)
+#26 0x00005569d09b2117 clang::driver::Compilation::ExecuteCommand(clang::driver::Command const&, clang::driver::Command const*&, bool) const (/home/nju/emsdk/upstream/bin/clang+0x38f8117)
+#27 0x00005569d09d24ab clang::driver::Driver::ExecuteCompilation(clang::driver::Compilation&, llvm::SmallVectorImpl<std::__2::pair<int, clang::driver::Command const*>>&) (/home/nju/emsdk/upstream/bin/clang+0x39184ab)
+#28 0x00005569cec2b933 clang_main(int, char**, llvm::ToolContext const&) (/home/nju/emsdk/upstream/bin/clang+0x1b71933)
+#29 0x00005569cec3ba0a main (/home/nju/emsdk/upstream/bin/clang+0x1b81a0a)
+#30 0x00007f28ec21e083 __libc_start_main /build/glibc-wuryBv/glibc-2.31/csu/../csu/libc-start.c:342:3
+#31 0x00005569ceb9f96a _start (/home/nju/emsdk/upstream/bin/clang+0x1ae596a)
+clang: error: clang frontend command failed with exit code 70 (use -v to see invocation)
+clang version 19.0.0git (https:/github.com/llvm/llvm-project 34ba90745fa55777436a2429a51a3799c83c6d4c)
+Target: wasm32-unknown-emscripten
+Thread model: posix
+InstalledDir: /home/nju/emsdk/upstream/bin
+clang: note: diagnostic msg: 
+********************
+
+PLEASE ATTACH THE FOLLOWING FILES TO THE BUG REPORT:
+Preprocessed source(s) and associated run script(s) are located at:
+clang: note: diagnostic msg: /tmp/driver-dfdc25.c
+clang: note: diagnostic msg: /tmp/driver-dfdc25.sh
+clang: note: diagnostic msg: 
+
+********************
+emcc: error: '/home/nju/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/home/nju/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Werror=implicit-function-declaration -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -w /home/nju/WASM-testing/src/temp/5/driver.c -c -o /tmp/emscripten_temp_1j45g5cq/driver_1.o' failed (returned 1)
+

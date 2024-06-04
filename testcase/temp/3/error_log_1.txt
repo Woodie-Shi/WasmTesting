@@ -1,0 +1,15 @@
+编译文件夹 3 时出现以下错误：
+/tmp/driver-e3efac.o: in function `init':
+driver.c:(.text+0x8db): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_71' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0x9cd): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_72' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0x9f4): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_81' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xa0a): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_82' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xa20): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_83' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xa7f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_88' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xb0f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_90' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xb5f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_91' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xb75): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_92' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xb8b): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_93' defined in .bss section in /tmp/driver-e3efac.o
+driver.c:(.text+0xbaa): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

@@ -1,0 +1,15 @@
+编译文件夹 6 时出现以下错误：
+/tmp/driver-a9125f.o: in function `init':
+driver.c:(.text+0x62b): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_23' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0x6d4): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_24' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0x6e9): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_28' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0x73e): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_29' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0x807): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_32' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0x8bb): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_33' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0x95a): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_37' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0xa34): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_38' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0xadc): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_45' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0xae2): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_45' defined in .bss section in /tmp/driver-a9125f.o
+driver.c:(.text+0xaea): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

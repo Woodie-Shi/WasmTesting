@@ -1,0 +1,12 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -mllvm -opt-bisect-limit=5 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --rereloop --once-reduction --extract-function --ssa -o ./command1.opt.wasm
+
+
+Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 2)Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 3)
+
+wasm-opt ./command1.wasm --flatten --rereloop --once-reduction --extract-function --ssa -o ./command1.opt.wasm
+Fatal: ExtractFunction usage:  wasm-opt --extract-function=FUNCTION_NAME
+

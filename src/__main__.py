@@ -1,0 +1,126 @@
+import logging
+import multiprocessing
+import os
+import random
+import shutil
+from pathlib import Path
+from utils import (run_csmith, run_yarpgen, get_test_programs, run_em, 
+                       check_compile, BINARYEN_PASS, run_binaryen, run_wasm, check_runtime)
+
+# Global constants
+CURRENT_DIR = Path.cwd()
+OPTIMIZATION_LEVELS = ["-O0", "-O1", "-O2", "-O3", "-Os", "-Oz"]
+
+# The following global constants should be adjusted according to your environment
+TEMP_DIR_BASE = CURRENT_DIR / "temp"
+BUG_DIR = CURRENT_DIR / "bugs"
+#CORE_COUNT = multiprocessing.cpu_count() - 2
+CORE_COUNT = 2
+# EMSDK_BIN_DIR = Path("/home/emsdk/upstream/bin")
+EMSDK_BIN_DIR = Path("/home/nju/emsdk/upstream/bin")
+# EMSDK_EMSCRIPTEN_DIR = Path("/home/emsdk/upstream/emscripten")
+EMSDK_EMSCRIPTEN_DIR = Path("/home/nju/emsdk/upstream/emscripten")
+# NODE_EXECUTABLE = "/root/.wasmer/bin/wasmer"
+NODE_EXECUTABLE = "/home/nju/wasmer/bin/wasmer"
+# YARPGEN_PATH = "/home/yarpgen/build/yarpgen"
+YARPGEN_PATH = "/home/nju/yarpgen/build/yarpgen"
+
+# Initialize logging
+logging.basicConfig(filename='process.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def generate_program(generator, temp_dir):
+    if generator == "yarpgen":
+        run_yarpgen(YARPGEN_PATH, "c", temp_dir)
+    elif generator == "csmith":
+        run_csmith(temp_dir)
+
+def compile_and_test(program, temp_dir):
+    # Placeholder variables for paths you might need. Adjust them according to your environment.
+    emcc_path = EMSDK_EMSCRIPTEN_DIR / "emcc"
+    opt_path = EMSDK_BIN_DIR / "opt"
+    wasm_opt_path = EMSDK_BIN_DIR / "wasm-opt"
+    
+    bug_dir = BUG_DIR  # Ensure this is defined globally or passed as an argument
+    
+    try:
+        # Select optimization level for Emscripten
+        level = random.choice(OPTIMIZATION_LEVELS)
+        # Run Emscripten
+        em_out1, em_err1 = run_em(str(emcc_path), str(opt_path), program, str(temp_dir / "test1.wasm"), level=level, bug_dir=bug_dir)
+        check_compile(bug_dir, program, em_out=em_out1, em_err=em_err1, source_folder=str(temp_dir), opt=level)
+
+        # If the first test generates a JS file, proceed with LLVM optimization passes
+        test1_js = temp_dir / "test1.wasm"
+        if test1_js.exists():
+            opt = random.choice(OPTIMIZATION_LEVELS)
+            # opt_number = random.choice([1, 2, 3, 4, 5])
+            opt_limit = random.randint(1, 10)
+            # opt_passes = random.sample(LLVM_PASS, opt_number)
+            # opt_options = [level] + opt_passes + [opt]
+            opt_options = opt + "-mllvm -opt-bisect-limit=" + str(opt_limit)
+            em_out2, em_err2 = run_em(str(emcc_path), str(opt_path), program, str(temp_dir / "test2.wasm"), opt=opt_options, bug_dir=bug_dir)
+            check_compile(bug_dir, program, em_out=em_out2, em_err=em_err2, source_folder=str(temp_dir), opt=opt_options)
+
+        # If both JS files exist, proceed with Binaryen optimizations
+        test2_js = temp_dir / "test2.wasm"
+        if test1_js.exists() and test2_js.exists():
+            b_opt_number = random.choice([1, 2, 3, 4, 5])
+            b_opt_passes = random.sample(BINARYEN_PASS, b_opt_number)
+            test2_wasm = temp_dir / "test2.wasm"
+            run_binaryen(str(wasm_opt_path), b_opt_passes, str(test2_wasm), bug_dir=bug_dir)
+            
+            # Run the WASM files using wasm runtime
+            wasm_out1, wasm_err1 = run_wasm(NODE_EXECUTABLE, str(test1_js), bug_dir=bug_dir)
+            wasm_out2, wasm_err2 = run_wasm(NODE_EXECUTABLE, str(test2_js), bug_dir=bug_dir)
+            
+            # Check runtime to find discrepancies or issues between different optimization levels
+            check_runtime(bug_dir, program, wasm_out2, wasm_err2, wasm_out1, wasm_err1, str(temp_dir / "test"), str(temp_dir / "test.wasm"), source_folder=str(temp_dir), opt=opt_options, binaryen_opt=b_opt_passes)
+    except Exception as e:
+        logging.error("Error in compile_and_test: %s", str(e), exc_info=True)
+        with open("exception.txt", "a") as e_file:
+            e_file.write(str(e))
+
+
+def process_generator(generator, core):
+    temp_dir = TEMP_DIR_BASE / str(core)
+    if temp_dir.exists():
+        shutil.rmtree(temp_dir)
+    temp_dir.mkdir(parents=True)
+    iterations = 0
+    print(f"Starting process_generator for {generator} on core {core}")
+    try:
+        while True:
+            try:
+                iterations += 1
+                if iterations % 10 == 0:
+                    print(f"Process {core} has completed {iterations} iterations")
+                generate_program(generator, temp_dir)
+                program_list1, program_list2 = get_test_programs(temp_dir)
+                # program = " ".join(program_list1 or program_list2)
+                program_list = program_list1 + program_list2
+                if len(program_list) == 0:
+                    logging.warning("No programs generated by %s", generator)
+                elif len(program_list) == 1:
+                    program = program_list[0]
+                else:
+                    program = program_list
+                print("Num of program_list: %d", len(program_list))
+                compile_and_test(program, temp_dir)
+            except KeyboardInterrupt:
+                raise
+    except KeyboardInterrupt:
+        print("KeyboardInterrupt. GOODBYE!")
+        return
+    except Exception as e:
+        logging.error("Error in process_generator: %s", str(e), exc_info=True)
+        with open("exception.txt", "a") as e_file:
+            e_file.write(str(e))
+
+
+def main(generator="csmith"):
+
+    with multiprocessing.Pool(processes=CORE_COUNT) as pool:
+        pool.starmap(process_generator, [(generator, idx) for idx in range(CORE_COUNT)])
+
+if __name__ == "__main__":
+    main("yarpgen")

@@ -1,0 +1,10 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -o ./11/command0.wasm -O2
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -mllvm -opt-bisect-limit=2 -o ./11/command1.wasm 
+&&
+wasm-opt ./11/command1.wasm --coalesce-locals --licm --stub-unsupported-js -o ./11/command1.wasm
+
+wasmer ./11/command0.wasm 
+10065828423725
+wasmer ./11/command1.wasm
+null

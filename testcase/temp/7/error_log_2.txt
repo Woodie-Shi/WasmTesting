@@ -1,0 +1,15 @@
+编译文件夹 7 时出现以下错误：
+/tmp/driver-c664c6.o: in function `init':
+driver.c:(.text+0x7be): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_15' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x7de): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x7e5): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x7ec): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x7f3): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x7fa): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x801): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x808): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x80f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x816): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-c664c6.o
+driver.c:(.text+0x81d): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

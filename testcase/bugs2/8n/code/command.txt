@@ -1,0 +1,18 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O1 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O1 -mllvm -opt-bisect-limit=9 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --heap2local --simplify-globals-optimizing --gufa-optimizing --optimize-added-constants --rse -o ./command1.opt.wasm
+
+
+Fatal: OptimizeAddedConstants can only be run when the --low-memory-unused flag is set.Fatal: OptimizeAddedConstants can only be run when the --low-memory-unused flag is set.Fatal: OptimizeAddedConstants can only be run when the --low-memory-unused flag is set.
+
+
+wasm-opt ./command1.wasm --low-memory-unused --heap2local --simplify-globals-optimizing --gufa-optimizing --optimize-added-constants --rse -o ./command1.opt.wasm
+
+wasmer ./command0.wasm 
+11753756494491396939
+wasmer ./command1.wasm 
+11753756494491396939
+wasmer ./command1.opt.wasm 
+11753756494491396939

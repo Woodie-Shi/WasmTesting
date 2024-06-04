@@ -1,0 +1,9 @@
+emcc func.c driver.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -o ./89/command0.wasm -Os
+
+emcc func.c driver.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -mllvm -opt-bisect-limit=1 -o ./89/command1.wasm 
+&&
+wasm-opt ./89/command1.wasm --dfo --merge-locals --generate-global-effects --strip-debug -o ./89/command1.wasm
+
+报错：Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 1)Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 3)Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 2)Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 7)
+
+按照提示使用命令wasm-opt ./89/command1.wasm --flatten --dfo --merge-locals --generate-global-effects --strip-debug -o ./89/command1_optimized.wasm，最后消除该bug

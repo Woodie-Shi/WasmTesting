@@ -1,0 +1,11 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -o ./12/command0.wasm 
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -mllvm -opt-bisect-limit=9 -o ./12/command1.wasm 
+&&
+wasm-opt ./12/command1.wasm --strip-producers --licm --generate-global-effects --precompute -o ./12/command1.wasm
+
+wasmer ./12/command0.wasm 
+16346804236071936503
+
+wasmer ./12/command1.wasm 
+16346804236071936503

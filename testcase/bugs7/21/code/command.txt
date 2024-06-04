@@ -1,0 +1,9 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -mllvm -opt-bisect-limit=7 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --mod-asyncify-never-unwind --memory-packing -o ./command1.opt.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --memory-packing -o ./command1.opt.wasm

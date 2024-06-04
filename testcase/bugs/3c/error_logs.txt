@@ -1,0 +1,13 @@
+Source path: ['/home/nju/WASM-testing/src/temp/8/func.c', '/home/nju/WASM-testing/src/temp/8/driver.c']
+Option: -O2-mllvm -opt-bisect-limit=1
+Binaryen optimization pass: ['--stub-unsupported-js', '--local-subtyping']
+Output:
+First file stdout:
+4281909331713984153
+
+First file stderr:
+
+Second file stdout:
+
+Sceond file stderr:
+

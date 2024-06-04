@@ -1,0 +1,7 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O0 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O0 -mllvm -opt-bisect-limit=3 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --set-globals --fpcast-emu --remove-non-js-ops --simplify-locals-notee-nostructure -o ./command1.opt.wasm
+
+Fatal: SetGlobals usage:  wasm-opt --pass-arg=set-globals@x=y,z=w

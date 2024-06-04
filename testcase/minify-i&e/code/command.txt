@@ -1,0 +1,7 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -mllvm -opt-bisect-limit=10 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --signature-refining --mod-asyncify-never-unwind -o ./command1.opt.wasm
+Fatal: Module::getExport: asyncify_stop_unwind does not existFatal: Module::getExport: asyncify_stop_unwind does not existFatal: Module::getExport: asyncify_stop_unwind does not existFatal: Module::getExport: asyncify_stop_unwind does not exist
+Fatal: Module::getExport: asyncify_stop_unwind does not exist

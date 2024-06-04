@@ -1,0 +1,9 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O1 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O1 -mllvm -opt-bisect-limit=2 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --flatten --minify-imports-and-exports-and-modules --extract-function --generate-dyncalls --souperify -o ./command1.opt.wasm
+
+Fatal: ExtractFunction usage:  wasm-opt --extract-function=FUNCTION_NAME
+
+wasm-opt ./command1.wasm --flatten --minify-imports-and-exports-and-modules --generate-dyncalls --souperify -o ./command1.opt.wasm

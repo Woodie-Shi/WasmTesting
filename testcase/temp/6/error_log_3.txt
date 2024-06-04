@@ -1,0 +1,15 @@
+编译文件夹 6 时出现以下错误：
+/tmp/driver-d205e9.o: in function `init':
+driver.c:(.text+0xf8a): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_23' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x12bd): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_24' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x12d5): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_28' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x148d): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_29' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x16fd): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_32' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x1a7b): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_33' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x1b3f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_37' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x1ea6): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_38' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x20b6): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_45' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x20bc): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_45' defined in .bss section in /tmp/driver-d205e9.o
+driver.c:(.text+0x20c6): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

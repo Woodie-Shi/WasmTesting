@@ -1,0 +1,9 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O1 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O1 -mllvm -opt-bisect-limit=4 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --extract-function-index --minify-imports-and-exports-and-modules --remove-non-js-ops --merge-similar-functions --name-types -o ./command1.opt.wasm
+
+Fatal: ExtractFunctionIndex usage: wasm-opt --extract-function-index=FUNCTION_INDEX
+
+wasm-opt ./command1.wasm --remove-non-js-ops -o ./command1.opt.wasm

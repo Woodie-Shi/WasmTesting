@@ -1,0 +1,38 @@
+Source path: ['/home/nju/WASM-testing/src/temp/2/func.c', '/home/nju/WASM-testing/src/temp/2/driver.c']
+Option: -Oz
+Output:
+
+fatal error: error in backend: IO failure on output stream: No space left on device
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.	Program arguments: /home/nju/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/home/nju/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Werror=implicit-function-declaration -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -w -Oz /home/nju/WASM-testing/src/temp/2/driver.c -c -o /tmp/emscripten_temp_apegv9z0/driver_1.o
+1.	<eof> parser at end of file
+ #0 0x000056226ff1ecd8 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) (/home/nju/emsdk/upstream/bin/clang+0x2e5acd8)
+ #1 0x000056226ff1c1de llvm::sys::RunSignalHandlers() (/home/nju/emsdk/upstream/bin/clang+0x2e581de)
+ #2 0x000056226ff1df2f llvm::sys::CleanupOnSignal(unsigned long) (/home/nju/emsdk/upstream/bin/clang+0x2e59f2f)
+ #3 0x000056226fe7c38e (anonymous namespace)::CrashRecoveryContextImpl::HandleCrash(int, unsigned long) (.llvm.18266623704652747455) CrashRecoveryContext.cpp:0:0
+ #4 0x000056226fe7c34b (/home/nju/emsdk/upstream/bin/clang+0x2db834b)
+ #5 0x000056226ff18b7b (/home/nju/emsdk/upstream/bin/clang+0x2e54b7b)
+ #6 0x000056226ec3a3c3 (/home/nju/emsdk/upstream/bin/clang+0x1b763c3)
+ #7 0x000056226fe808b0 llvm::report_fatal_error(llvm::Twine const&, bool) (/home/nju/emsdk/upstream/bin/clang+0x2dbc8b0)
+ #8 0x000056226ff0268f (/home/nju/emsdk/upstream/bin/clang+0x2e3e68f)
+ #9 0x000056226ff01279 llvm::raw_fd_ostream::~raw_fd_ostream() (/home/nju/emsdk/upstream/bin/clang+0x2e3d279)
+#10 0x000056227079320c clang::EmitBackendOutput(clang::DiagnosticsEngine&, clang::HeaderSearchOptions const&, clang::CodeGenOptions const&, clang::TargetOptions const&, clang::LangOptions const&, llvm::StringRef, llvm::Module*, clang::BackendAction, llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>, std::__2::unique_ptr<llvm::raw_pwrite_stream, std::__2::default_delete<llvm::raw_pwrite_stream>>, clang::BackendConsumer*) (/home/nju/emsdk/upstream/bin/clang+0x36cf20c)
+#11 0x00005622707ac3d3 clang::BackendConsumer::HandleTranslationUnit(clang::ASTContext&) (/home/nju/emsdk/upstream/bin/clang+0x36e83d3)
+#12 0x0000562271c25869 clang::ParseAST(clang::Sema&, bool, bool) (/home/nju/emsdk/upstream/bin/clang+0x4b61869)
+#13 0x0000562270c3eae1 clang::FrontendAction::Execute() (/home/nju/emsdk/upstream/bin/clang+0x3b7aae1)
+#14 0x0000562270b9a0a0 clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) (/home/nju/emsdk/upstream/bin/clang+0x3ad60a0)
+#15 0x0000562270d3f58a clang::ExecuteCompilerInvocation(clang::CompilerInstance*) (/home/nju/emsdk/upstream/bin/clang+0x3c7b58a)
+#16 0x000056226ec38d0f cc1_main(llvm::ArrayRef<char const*>, char const*, void*) (/home/nju/emsdk/upstream/bin/clang+0x1b74d0f)
+#17 0x000056226ec366c3 ExecuteCC1Tool(llvm::SmallVectorImpl<char const*>&, llvm::ToolContext const&) driver.cpp:0:0
+#18 0x00005622709fec09 void llvm::function_ref<void ()>::callback_fn<clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<char>>*, bool*) const::$_0>(long) Job.cpp:0:0
+#19 0x000056226fe7c32c llvm::CrashRecoveryContext::RunSafely(llvm::function_ref<void ()>) (/home/nju/emsdk/upstream/bin/clang+0x2db832c)
+#20 0x00005622709fe655 clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<char>>*, bool*) const (/home/nju/emsdk/upstream/bin/clang+0x393a655)
+#21 0x00005622709bc117 clang::driver::Compilation::ExecuteCommand(clang::driver::Command const&, clang::driver::Command const*&, bool) const (/home/nju/emsdk/upstream/bin/clang+0x38f8117)
+#22 0x00005622709dc4ab clang::driver::Driver::ExecuteCompilation(clang::driver::Compilation&, llvm::SmallVectorImpl<std::__2::pair<int, clang::driver::Command const*>>&) (/home/nju/emsdk/upstream/bin/clang+0x39184ab)
+#23 0x000056226ec35933 clang_main(int, char**, llvm::ToolContext const&) (/home/nju/emsdk/upstream/bin/clang+0x1b71933)
+#24 0x000056226ec45a0a main (/home/nju/emsdk/upstream/bin/clang+0x1b81a0a)
+#25 0x00007f573523e083 __libc_start_main /build/glibc-wuryBv/glibc-2.31/csu/../csu/libc-start.c:342:3
+#26 0x000056226eba996a _start (/home/nju/emsdk/upstream/bin/clang+0x1ae596a)
+emcc: error: '/home/nju/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/home/nju/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Werror=implicit-function-declaration -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -w -Oz /home/nju/WASM-testing/src/temp/2/driver.c -c -o /tmp/emscripten_temp_apegv9z0/driver_1.o' failed (returned 1)
+

@@ -1,0 +1,1 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -o ./command0.wasm 

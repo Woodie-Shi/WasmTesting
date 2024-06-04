@@ -1,0 +1,15 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -o ./6/command0.wasm -Os
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -mllvm -opt-bisect-limit=7 -o ./6/command1.wasm 
+&&
+wasm-opt ./6/command1.wasm --untee --trap-mode-clamp --remove-imports --roundtrip --inline-main -o ./6/command1.wasm
+
+wasmer ./6/command0.wasm 
+16871285034349708082
+wasmer ./6/command1.wasm 
+error: RuntimeError: out of bounds memory access
+    at <unnamed> (<module>[3]:0xa125)
+    at <unnamed> (<module>[11]:0xafe7)
+    at <unnamed> (<module>[10]:0xa578)
+    at <unnamed> (<module>[2]:0x9fc8)
+

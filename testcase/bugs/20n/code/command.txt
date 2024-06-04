@@ -1,0 +1,4 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -o ./command0.wasm 
+emcc func.c driver.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -mllvm -opt-bisect-limit=7 -o ./command1.wasm 
+&&
+wasm-opt ./command1.wasm --merge-similar-functions -o ./command1.opt.wasm

@@ -1,0 +1,13 @@
+Source path: ['/home/nju/WASM-testing/src/temp/2/func.c', '/home/nju/WASM-testing/src/temp/2/driver.c']
+Option: -O0-mllvm -opt-bisect-limit=7
+Binaryen optimization pass: ['--dae', '--generate-i64-dyncalls']
+Output:
+First file stdout:
+7205621761027240268
+
+First file stderr:
+
+Second file stdout:
+
+Sceond file stderr:
+

@@ -1,0 +1,24 @@
+export memory memory(initial: 32000, max: 32768);
+
+global g_a:int = 66560;
+
+export table indirect_function_table:funcref(min: 2, max: 2);
+
+import function wasi_snapshot_preview1_proc_exit(a:int);
+
+function f_b() {
+}
+
+export function start() {
+  wasi_snapshot_preview1_proc_exit(0);
+  unreachable;
+}
+
+export function stackSave():int {
+  return g_a
+}
+
+export function stackRestore(a:int) {
+  g_a = a
+}
+

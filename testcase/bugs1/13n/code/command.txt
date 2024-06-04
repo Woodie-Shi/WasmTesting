@@ -1,0 +1,5 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O3 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O3 -mllvm -opt-bisect-limit=4 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --intrinsic-lowering -o ./command1.opt.wasm

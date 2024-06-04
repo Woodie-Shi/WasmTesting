@@ -1,0 +1,13 @@
+emcc func.c driver.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -o ./0/command0.wasm -Os
+
+emcc func.c driver.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -mllvm -opt-bisect-limit=2 -o ./0/command1.wasm 
+&&
+wasm-opt ./0/command1.wasm --remove-unused-module-elements --rse --stack-check --trap-mode-clamp -o ./0/command1.wasm
+
+wasmer command0.wasm 
+11093822788440
+wasmer command1.wasm
+error: RuntimeError: unreachable
+    at <unnamed> (<module>[4]:0x1e7)
+╰─▶ 1: RuntimeError: unreachable
+           at <unnamed> (<module>[4]:0x1e7)

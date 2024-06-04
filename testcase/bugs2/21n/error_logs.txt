@@ -1,0 +1,14 @@
+Source path: ['/home/nju/WASM-testing/src/temp/3/func.c', '/home/nju/WASM-testing/src/temp/3/driver.c']
+Option: -O2-mllvm -opt-bisect-limit=10
+Binaryen optimization pass: ['--remove-unused-nonfunction-module-elements', '--untee', '--duplicate-function-elimination']
+Output:
+First file stdout:
+8614074830539510372
+
+First file stderr:
+
+Second file stdout:
+15688130709552929951
+
+Sceond file stderr:
+

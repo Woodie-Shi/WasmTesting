@@ -1,0 +1,15 @@
+Source path: ['/home/nju/WASM-testing/src/temp/1/func.c', '/home/nju/WASM-testing/src/temp/1/driver.c']
+Option: -Oz-mllvm -opt-bisect-limit=10
+Binaryen optimization pass: ['--remove-imports', '--strip-target-features', '--minify-imports-and-exports', '--discard-global-effects']
+Output:
+First file stdout:
+17624344689361008318
+
+First file stderr:
+
+Second file stdout:
+
+Sceond file stderr:
+error: The module doesn't contain a "_start" function. Either implement it or specify an entrypoint function.
+╰─▶ 1: Missing export _start
+

@@ -1,0 +1,39 @@
+Source path: ['/home/nju/WASM-testing/src/temp/8/func.c', '/home/nju/WASM-testing/src/temp/8/driver.c']
+Option: -O1
+Output:
+
+fatal error: error in backend: IO failure on output stream: No space left on device
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.	Program arguments: /home/nju/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/home/nju/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Werror=implicit-function-declaration -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -w -O1 /home/nju/WASM-testing/src/temp/8/driver.c -c -o /tmp/emscripten_temp_nk3r34yn/driver_1.o
+1.	<eof> parser at end of file
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  clang     0x0000563b08443cd8 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 40
+1  clang     0x0000563b084411de llvm::sys::RunSignalHandlers() + 238
+2  clang     0x0000563b08442f2f llvm::sys::CleanupOnSignal(unsigned long) + 255
+3  clang     0x0000563b083a138e
+4  clang     0x0000563b083a134b
+5  clang     0x0000563b0843db7b
+6  clang     0x0000563b0715f3c3
+7  clang     0x0000563b083a58b0 llvm::report_fatal_error(llvm::Twine const&, bool) + 304
+8  clang     0x0000563b0842768f
+9  clang     0x0000563b08426279 llvm::raw_fd_ostream::~raw_fd_ostream() + 9
+10 clang     0x0000563b08cb820c clang::EmitBackendOutput(clang::DiagnosticsEngine&, clang::HeaderSearchOptions const&, clang::CodeGenOptions const&, clang::TargetOptions const&, clang::LangOptions const&, llvm::StringRef, llvm::Module*, clang::BackendAction, llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>, std::__2::unique_ptr<llvm::raw_pwrite_stream, std::__2::default_delete<llvm::raw_pwrite_stream>>, clang::BackendConsumer*) + 10652
+11 clang     0x0000563b08cd13d3 clang::BackendConsumer::HandleTranslationUnit(clang::ASTContext&) + 2371
+12 clang     0x0000563b0a14a869 clang::ParseAST(clang::Sema&, bool, bool) + 873
+13 clang     0x0000563b09163ae1 clang::FrontendAction::Execute() + 81
+14 clang     0x0000563b090bf0a0 clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) + 1088
+15 clang     0x0000563b0926458a clang::ExecuteCompilerInvocation(clang::CompilerInstance*) + 618
+16 clang     0x0000563b0715dd0f cc1_main(llvm::ArrayRef<char const*>, char const*, void*) + 2303
+17 clang     0x0000563b0715b6c3
+18 clang     0x0000563b08f23c09
+19 clang     0x0000563b083a132c llvm::CrashRecoveryContext::RunSafely(llvm::function_ref<void ()>) + 140
+20 clang     0x0000563b08f23655 clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<char>>*, bool*) const + 357
+21 clang     0x0000563b08ee1117 clang::driver::Compilation::ExecuteCommand(clang::driver::Command const&, clang::driver::Command const*&, bool) const + 935
+22 clang     0x0000563b08f014ab clang::driver::Driver::ExecuteCompilation(clang::driver::Compilation&, llvm::SmallVectorImpl<std::__2::pair<int, clang::driver::Command const*>>&) + 763
+23 clang     0x0000563b0715a933 clang_main(int, char**, llvm::ToolContext const&) + 13411
+24 clang     0x0000563b0716aa0a main + 90
+25 libc.so.6 0x00007fd8758a8083 __libc_start_main + 243
+26 clang     0x0000563b070ce96a _start + 42
+emcc: error: '/home/nju/emsdk/upstream/bin/clang -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr --sysroot=/home/nju/emsdk/upstream/emscripten/cache/sysroot -DEMSCRIPTEN -Werror=implicit-function-declaration -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -w -O1 /home/nju/WASM-testing/src/temp/8/driver.c -c -o /tmp/emscripten_temp_nk3r34yn/driver_1.o' failed (returned 1)
+

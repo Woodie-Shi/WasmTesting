@@ -1,0 +1,11 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -o ./30/command0.wasm 
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -mllvm -opt-bisect-limit=8 -o ./30/command1.wasm 
+&&
+wasm-opt ./30/command1.wasm --duplicate-function-elimination --limit-segments --generate-dyncalls --remove-unused-nonfunction-module-elements -o ./30/command1.wasm
+
+wasmer ./30/command0.wasm 
+16346804236071936503
+
+wasmer ./30/command1.wasm 
+16346804236071936503

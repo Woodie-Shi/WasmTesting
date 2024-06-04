@@ -1,0 +1,33 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Os -mllvm -opt-bisect-limit=4 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --emit-target-features --coalesce-locals --remove-imports --remove-unused-module-elements --merge-blocks -o ./command1.opt.wasm
+
+wasmer ./command1.wasm 
+4963422668931679867
+wasmer ./command1.opt.wasm 
+error: RuntimeError: out of bounds memory access
+    at <unnamed> (<module>[3]:0x762)
+    at <unnamed> (<module>[10]:0x1503)
+    at <unnamed> (<module>[9]:0xb43)
+    at <unnamed> (<module>[2]:0x666)
+    
+    
+wasm-opt ./command1.wasm --emit-target-features --coalesce-locals --remove-unused-module-elements --merge-blocks -o ./command1.opt.wasm
+wasmer ./command1.opt.wasm 
+4963422668931679867
+
+
+emcc -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 driver.c func.c -Os -o ./command1.wasm
+wasm-opt --remove-imports ./command1.wasm -o ./command1.opt.wasm
+wasmer ./command1.opt.wasm 
+error: RuntimeError: out of bounds memory access
+    at <unnamed> (<module>[3]:0x69d)
+    at <unnamed> (<module>[9]:0x130b)
+    at <unnamed> (<module>[8]:0x8e1)
+    at <unnamed> (<module>[1]:0x42f)
+    
+emcc -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 driver.c func.c -O0 -o ./command1.wasm
+wasm-opt --remove-imports ./command1.wasm -o ./command1.opt.wasm
+

@@ -1,0 +1,19 @@
+Source path: ['/home/nju/WASM-testing/src/temp/1/func.c', '/home/nju/WASM-testing/src/temp/1/driver.c']
+Option: -O2-mllvm -opt-bisect-limit=1
+Binaryen optimization pass: ['--stack-check', '--flatten', '--strip-producers', '--memory-packing', '--signature-refining']
+Output:
+First file stdout:
+11097480476621
+
+First file stderr:
+
+Second file stdout:
+
+Sceond file stderr:
+error: RuntimeError: unreachable
+    at <unnamed> (<module>[7]:0xe54)
+    at <unnamed> (<module>[8]:0x10a3)
+╰─▶ 1: RuntimeError: unreachable
+           at <unnamed> (<module>[7]:0xe54)
+           at <unnamed> (<module>[8]:0x10a3)
+

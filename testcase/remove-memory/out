@@ -1,0 +1,10 @@
+Error: failed to run main module `./command1.opt.wasm`
+
+Caused by:
+    0: failed to invoke command default
+    1: error while executing at wasm backtrace:
+           0: 0x14e1e - <unknown>!<wasm function 7>
+           1: 0x126d8 - <unknown>!<wasm function 6>
+           2: 0x24cb3 - <unknown>!<wasm function 8>
+    2: memory fault at wasm address 0x7d000001 in linear memory of size 0x7d000000
+    3: wasm trap: out of bounds memory access

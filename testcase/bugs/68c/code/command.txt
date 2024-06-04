@@ -1,0 +1,35 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -mllvm -opt-bisect-limit=10 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --remove-imports --strip-target-features --minify-imports-and-exports --discard-global-effects -o ./command1.opt.wasm
+
+wasmer ./command1.wasm 
+17624344689361008318
+
+wasmer ./command1.opt.wasm 
+error: The module doesn't contain a "_start" function. Either implement it or specify an entrypoint function.
+
+
+wasm-opt ./command1.wasm --strip-target-features --minify-imports-and-exports --discard-global-effects -o ./command1.opt.wasm
+proc_exit => a
+fd_write => b
+memory => c
+__indirect_function_table => d
+_start => e
+stackSave => f
+stackRestore => g
+wasmer ./command1.opt.wasm 
+error: Instantiation failed
+╰─▶ 1: Error while importing "wasi_snapshot_preview1"."a": unknown import. Expected Function(FunctionType { params: [I32], results: [] })
+
+wasm-opt ./command1.wasm --remove-imports --strip-target-features --discard-global-effects -o ./command1.opt.wasm
+wasmer ./command1.opt.wasm 
+error: RuntimeError: out of bounds memory access
+    at <unnamed> (<module>[3]:0x202e)
+    at <unnamed> (<module>[11]:0x2ccf)
+    at <unnamed> (<module>[10]:0x2313)
+    at <unnamed> (<module>[2]:0x1ef9)
+    
+    
+

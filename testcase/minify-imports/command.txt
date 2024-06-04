@@ -1,0 +1,26 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1  -O3 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O3 -o ./command1.wasm 
+&&
+wasm-opt ./command1.wasm --strip-producers --remove-unused-names --remove-imports --signature-refining --minify-imports -o ./command1.opt.wasm
+
+wasmer ./36/command0.wasm 
+2991118961062569522
+wasmer ./36/command1.opt.wasm 
+error: RuntimeError: out of bounds memory access
+    at <unnamed> (<module>[3]:0xf1f)
+    at <unnamed> (<module>[11]:0x1d2f)
+    at <unnamed> (<module>[10]:0x1367)
+    at <unnamed> (<module>[2]:0xddb)
+    
+wasm-opt ./36/command1.wasm --strip-producers --remove-unused-names --signature-refining --minify-imports -o ./36/command1.opt.wasm
+sed-names --signature-refining --minify-imports -o ./36/command1.opt.wasm
+proc_exit => a
+fd_write => b
+
+error: Instantiation failed
+╰─▶ 1: Error while importing "wasi_snapshot_preview1"."a": unknown import. Expected Function(FunctionType { params: [I32], results: [] })
+
+wasm-opt ./command1.wasm --strip-producers --remove-unused-names --signature-refining -o ./command1.opt.wasm
+wasmer ./command1.opt.wasm 
+2991118961062569522

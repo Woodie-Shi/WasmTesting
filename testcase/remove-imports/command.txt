@@ -1,0 +1,3 @@
+emcc -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 driver.c func.c
+
+wasm-opt --remove-imports ./command1.wasm -o ./command1.opt.wasm

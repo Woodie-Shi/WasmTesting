@@ -1,0 +1,10 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -Oz -mllvm -opt-bisect-limit=7 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --jspi --rereloop --signature-pruning -o ./command1.opt.wasm
+
+Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 3)Fatal: IR must be flat: run --flatten beforehand (function bodies must not flow values, in 4)
+Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 2)
+
+wasm-opt ./command1.wasm --jspi --flatten --rereloop --signature-pruning -o ./command1.opt.wasm

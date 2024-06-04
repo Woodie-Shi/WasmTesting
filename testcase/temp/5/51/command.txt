@@ -1,0 +1,18 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1  -O2 -o ./51/command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O2 -mllvm -opt-bisect-limit=10 -o ./51/command1.wasm 
+&&
+wasm-opt ./51/command1.wasm --merge-blocks --souperify --code-pushing --post-emscripten -o ./51/command1.opt.wasm
+
+Fatal: IR must be flat: run --flatten beforehand (tees are not allowed, only sets, in 1)
+改为: 
+wasm-opt ./51/command1.wasm --flatten --merge-blocks --souperify --code-pushing --post-emscripten -o ./51/command1.opt.wasm
+
+wasmer ./51/command0.wasm 
+2991118961062569522
+
+wasmer ./51/command1.wasm 
+2991118961062569522
+
+wasmer ./51/command1.opt.wasm
+2991118961062569522

@@ -1,0 +1,35 @@
+Source path: ['/home/nju/WASM-testing/src/temp/1/func.c', '/home/nju/WASM-testing/src/temp/1/driver.c']
+Option: -Os
+Output:
+
+LLVM ERROR: LEB is outside Varint32 range
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /home/nju/emsdk/upstream/bin/wasm-ld -o /home/nju/WASM-testing/src/temp/1/test1.wasm /tmp/emscripten_temp_nu_tuda7/func_0.o /tmp/emscripten_temp_nu_tuda7/driver_1.o -L/home/nju/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten /home/nju/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/crt1.o -lGL-getprocaddr -lal -lhtml5 -lstandalonewasm-nocatch-memgrow -lstubs -lc -ldlmalloc -lcompiler_rt -lc++-noexcept -lc++abi-noexcept -lsockets -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr /tmp/tmpk1ye_z5plibemscripten_js_symbols.so --strip-debug --export=stackSave --export=stackRestore --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=__start_em_lib_deps --export-if-defined=__stop_em_lib_deps --export-if-defined=__start_em_js --export-if-defined=__stop_em_js --export-table -z stack-size=65536 --max-memory=2147483648 --initial-memory=2097152000 --table-base=1 --global-base=1024
+ #0 0x0000556f17b43738 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) (/home/nju/emsdk/upstream/bin/wasm-ld+0xf73738)
+ #1 0x0000556f17b40c3e llvm::sys::RunSignalHandlers() (/home/nju/emsdk/upstream/bin/wasm-ld+0xf70c3e)
+ #2 0x0000556f17b44387 SignalHandler(int) Signals.cpp:0:0
+ #3 0x00007f2a8dbf9420 __restore_rt (/lib/x86_64-linux-gnu/libpthread.so.0+0x14420)
+ #4 0x00007f2a8d89e00b raise /build/glibc-wuryBv/glibc-2.31/signal/../sysdeps/unix/sysv/linux/raise.c:51:1
+ #5 0x00007f2a8d87d859 abort /build/glibc-wuryBv/glibc-2.31/stdlib/abort.c:81:7
+ #6 0x0000556f17ab3c73 llvm::report_fatal_error(llvm::Twine const&, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0xee3c73)
+ #7 0x0000556f17ab3ab6 (/home/nju/emsdk/upstream/bin/wasm-ld+0xee3ab6)
+ #8 0x0000556f19fbbaa0 llvm::object::WasmObjectFile::isValidSectionSymbol(unsigned int) const (/home/nju/emsdk/upstream/bin/wasm-ld+0x33ebaa0)
+ #9 0x0000556f19fbc482 readInitExpr(llvm::wasm::WasmInitExpr&, llvm::object::WasmObjectFile::ReadContext&) WasmObjectFile.cpp:0:0
+#10 0x0000556f19fb37b2 llvm::object::WasmObjectFile::parseDataSection(llvm::object::WasmObjectFile::ReadContext&) (/home/nju/emsdk/upstream/bin/wasm-ld+0x33e37b2)
+#11 0x0000556f19fae293 llvm::object::WasmObjectFile::parseSection(llvm::object::WasmSection&) (/home/nju/emsdk/upstream/bin/wasm-ld+0x33de293)
+#12 0x0000556f19fadd5d llvm::object::WasmObjectFile::WasmObjectFile(llvm::MemoryBufferRef, llvm::Error&) (/home/nju/emsdk/upstream/bin/wasm-ld+0x33ddd5d)
+#13 0x0000556f19f8ec3e llvm::object::ObjectFile::createObjectFile(llvm::MemoryBufferRef, llvm::file_magic, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0x33bec3e)
+#14 0x0000556f19fab8b0 llvm::object::SymbolicFile::createSymbolicFile(llvm::MemoryBufferRef, llvm::file_magic, llvm::LLVMContext*, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0x33db8b0)
+#15 0x0000556f19f2d491 llvm::object::createBinary(llvm::MemoryBufferRef, llvm::LLVMContext*, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0x335d491)
+#16 0x0000556f17f099d7 lld::wasm::createObjectFile(llvm::MemoryBufferRef, llvm::StringRef, unsigned long, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0x13399d7)
+#17 0x0000556f17f044ee lld::wasm::(anonymous namespace)::LinkerDriver::addFile(llvm::StringRef) Driver.cpp:0:0
+#18 0x0000556f17efe22e lld::wasm::(anonymous namespace)::LinkerDriver::linkerMain(llvm::ArrayRef<char const*>) Driver.cpp:0:0
+#19 0x0000556f17efa7b5 lld::wasm::link(llvm::ArrayRef<char const*>, llvm::raw_ostream&, llvm::raw_ostream&, bool, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0x132a7b5)
+#20 0x0000556f17b4676e lld::unsafeLldMain(llvm::ArrayRef<char const*>, llvm::raw_ostream&, llvm::raw_ostream&, llvm::ArrayRef<lld::DriverDef>, bool) (/home/nju/emsdk/upstream/bin/wasm-ld+0xf7676e)
+#21 0x0000556f17a8cc21 lld_main(int, char**, llvm::ToolContext const&) (/home/nju/emsdk/upstream/bin/wasm-ld+0xebcc21)
+#22 0x0000556f17a8d604 main (/home/nju/emsdk/upstream/bin/wasm-ld+0xebd604)
+#23 0x00007f2a8d87f083 __libc_start_main /build/glibc-wuryBv/glibc-2.31/csu/../csu/libc-start.c:342:3
+#24 0x0000556f17a03f6a _start (/home/nju/emsdk/upstream/bin/wasm-ld+0xe33f6a)
+emcc: error: '/home/nju/emsdk/upstream/bin/wasm-ld -o /home/nju/WASM-testing/src/temp/1/test1.wasm /tmp/emscripten_temp_nu_tuda7/func_0.o /tmp/emscripten_temp_nu_tuda7/driver_1.o -L/home/nju/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten /home/nju/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/crt1.o -lGL-getprocaddr -lal -lhtml5 -lstandalonewasm-nocatch-memgrow -lstubs -lc -ldlmalloc -lcompiler_rt -lc++-noexcept -lc++abi-noexcept -lsockets -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr /tmp/tmpk1ye_z5plibemscripten_js_symbols.so --strip-debug --export=stackSave --export=stackRestore --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=__start_em_lib_deps --export-if-defined=__stop_em_lib_deps --export-if-defined=__start_em_js --export-if-defined=__stop_em_js --export-table -z stack-size=65536 --max-memory=2147483648 --initial-memory=2097152000 --table-base=1 --global-base=1024' failed (received SIGABRT (-6))
+

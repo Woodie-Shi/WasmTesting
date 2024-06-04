@@ -1,0 +1,21 @@
+Source path: ['/home/nju/WASM-testing/src/temp/5/func.c', '/home/nju/WASM-testing/src/temp/5/driver.c']
+Option: -O1-mllvm -opt-bisect-limit=2
+Binaryen optimization pass: ['--poppify']
+Output:
+First file stdout:
+7106829986244995564
+
+First file stderr:
+
+Second file stdout:
+
+Sceond file stderr:
+error: RuntimeError: out of bounds memory access
+    at <unnamed> (<module>[3]:0xff5)
+    at <unnamed> (<module>[7]:0x2083)
+    at <unnamed> (<module>[8]:0x20cb)
+╰─▶ 1: RuntimeError: out of bounds memory access
+           at <unnamed> (<module>[3]:0xff5)
+           at <unnamed> (<module>[7]:0x2083)
+           at <unnamed> (<module>[8]:0x20cb)
+

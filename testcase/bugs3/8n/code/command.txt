@@ -1,0 +1,13 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O0 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O0 -mllvm -opt-bisect-limit=2 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --rereloop --mod-asyncify-always-and-only-unwind --post-emscripten --simplify-locals --generate-i64-dyncalls -o ./command1.opt.wasm
+
+Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 4)
+
+wasm-opt ./command1.wasm --flatten --rereloop --mod-asyncify-always-and-only-unwind --post-emscripten --simplify-locals --generate-i64-dyncalls -o ./command1.opt.wasm
+
+Fatal: Module::getExport: asyncify_stop_unwind does not exist
+
+wasm-opt ./command1.wasm --flatten --rereloop --post-emscripten --simplify-locals --generate-i64-dyncalls -o ./command1.opt.wasm

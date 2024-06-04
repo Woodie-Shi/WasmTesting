@@ -1,0 +1,15 @@
+编译文件夹 3 时出现以下错误：
+/tmp/driver-12edbe.o: in function `init':
+driver.c:(.text+0x1082): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_71' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x11d3): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_72' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x11da): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_72' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x11e1): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_72' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x11e8): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_72' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x11f9): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_72' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x1200): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_81' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x1216): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_82' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x122c): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_83' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x12d2): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_88' defined in .bss section in /tmp/driver-12edbe.o
+driver.c:(.text+0x13a6): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

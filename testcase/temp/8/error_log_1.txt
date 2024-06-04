@@ -1,0 +1,14 @@
+编译文件夹 8 时出现以下错误：
+/tmp/driver-ca3d06.o: in function `init':
+driver.c:(.text+0x1fcb): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_97' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x1fe1): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_98' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x2084): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_99' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x2124): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_100' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21b3): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21ba): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21c1): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21c8): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21cf): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21d6): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-ca3d06.o
+driver.c:(.text+0x21dd): 从输出所省略的额外重寻址溢出
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

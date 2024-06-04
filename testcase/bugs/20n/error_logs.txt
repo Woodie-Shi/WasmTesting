@@ -1,0 +1,14 @@
+Source path: ['/home/nju/WASM-testing/src/temp/9/func.c', '/home/nju/WASM-testing/src/temp/9/driver.c']
+Option: -Oz-mllvm -opt-bisect-limit=7
+Binaryen optimization pass: ['--merge-similar-functions']
+Output:
+First file stdout:
+5643854896734207353
+
+First file stderr:
+
+Second file stdout:
+46082087726871748
+
+Sceond file stderr:
+

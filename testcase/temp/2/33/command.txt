@@ -1,0 +1,10 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O0 -o ./33/command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O0 -mllvm -opt-bisect-limit=7 -o ./33/command1.wasm 
+&&
+wasm-opt ./33/command1.wasm --dae --generate-i64-dyncalls -o ./33/command1.opt.wasm
+
+wasmer ./33/command0.wasm 
+16871285034349708082
+wasmer ./33/command1.opt.wasm 
+16871285034349708082

@@ -1,0 +1,5 @@
+Error: failed to run main module `./command1.opt.wasm`
+
+Caused by:
+    0: failed to instantiate "./command1.opt.wasm"
+    1: unknown import: `wasi_snapshot_preview1::a` has not been defined

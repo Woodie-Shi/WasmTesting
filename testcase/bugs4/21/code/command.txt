@@ -1,0 +1,9 @@
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O3 -o ./command0.wasm
+
+emcc driver.c func.c -w -sTOTAL_MEMORY=2000MB -sALLOW_MEMORY_GROWTH=1 -O3 -mllvm -opt-bisect-limit=9 -o ./command1.wasm
+
+wasm-opt ./command1.wasm --func-metrics --minify-imports-and-exports --souperify-single-use --global-refining --merge-locals -o ./command1.opt.wasm
+
+Fatal: IR must be flat: run --flatten beforehand (instructions must only have constant expressions, local.get, or unreachable as children, in 1)
+
+wasm-opt ./command1.wasm --flatten --func-metrics --minify-imports-and-exports --souperify-single-use --global-refining --merge-locals -o ./command1.opt.wasm

@@ -1,0 +1,14 @@
+编译文件夹 8 时出现以下错误：
+/tmp/driver-39d442.o: in function `init':
+driver.c:(.text+0x6b3f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_97' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x6c8a): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_98' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x6dd8): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_99' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x6f0d): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_100' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x6fed): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_101' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x706f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_102' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x713c): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_103' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x72a0): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_104' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x7415): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_106' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x7579): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_107' defined in .bss section in /tmp/driver-39d442.o
+driver.c:(.text+0x76f8): 从输出所省略的额外重寻址溢出
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

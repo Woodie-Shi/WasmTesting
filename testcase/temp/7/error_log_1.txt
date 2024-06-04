@@ -1,0 +1,15 @@
+编译文件夹 7 时出现以下错误：
+/tmp/driver-75463b.o: in function `init':
+driver.c:(.text+0x4fb): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_15' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x513): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_16' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x545): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_18' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x563): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_19' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x579): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_20' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x5b7): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_22' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x5bd): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_22' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x5c5): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_23' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x600): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_24' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x65f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_25' defined in .bss section in /tmp/driver-75463b.o
+driver.c:(.text+0x677): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

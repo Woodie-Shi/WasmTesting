@@ -1,0 +1,15 @@
+编译文件夹 6 时出现以下错误：
+/tmp/driver-eb109a.o: in function `init':
+driver.c:(.text+0x85a): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_23' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0x903): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_24' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0x918): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_28' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0x983): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_29' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xa59): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_32' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xb11): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_33' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xbdf): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_37' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xcb7): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_38' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xd69): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_45' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xd6f): relocation truncated to fit: R_X86_64_PC32 against symbol `arr_45' defined in .bss section in /tmp/driver-eb109a.o
+driver.c:(.text+0xd79): 从输出所省略的额外重寻址溢出
+/usr/bin/ld: failed to convert GOTPCREL relocation; relink with --no-relax
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

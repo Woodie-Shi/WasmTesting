@@ -1,0 +1,13 @@
+Source path: ['/home/nju/WASM-testing/src/temp/9/func.c', '/home/nju/WASM-testing/src/temp/9/driver.c']
+Option: -O3-mllvm -opt-bisect-limit=2
+Binaryen optimization pass: ['--fpcast-emu', '--set-globals', '--code-folding', '--ssa-nomerge', '--cfp']
+Output:
+First file stdout:
+5754630495250695099
+
+First file stderr:
+
+Second file stdout:
+
+Sceond file stderr:
+Command '['/home/nju/wasmer/bin/wasmer', '/home/nju/WASM-testing/src/temp/9/test2.wasm']' timed out after 30 seconds

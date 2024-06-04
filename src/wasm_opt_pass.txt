@@ -1,0 +1,349 @@
+Optimization passes:
+--------------------
+
+  --alignment-lowering                          lower unaligned loads and stores
+                                                to smaller aligned ones
+
+  --asyncify                                    async/await style transform,
+                                                allowing pausing and resuming
+
+  --avoid-reinterprets                          Tries to avoid reinterpret
+                                                operations via more loads
+
+  --cfp                                         propagate constant struct field
+                                                values
+
+  --coalesce-locals                             reduce # of locals by coalescing
+
+  --coalesce-locals-learning                    reduce # of locals by coalescing
+                                                and learning
+
+  --code-folding                                fold code, merging duplicates
+
+  --code-pushing                                push code forward, potentially
+                                                making it not always execute
+
+  --const-hoisting                              hoist repeated constants to a
+                                                local
+
+  --dae                                         removes arguments to calls in an
+                                                lto-like manner
+
+  --dae-optimizing                              removes arguments to calls in an
+                                                lto-like manner, and optimizes
+                                                where we removed
+
+  --dce                                         removes unreachable code
+
+  --dealign                                     forces all loads and stores to
+                                                have alignment 1
+
+  --denan                                       instrument the wasm to convert
+                                                NaNs into 0 at runtime
+
+  --dfo                                         optimizes using the DataFlow SSA
+                                                IR
+
+  --directize                                   turns indirect calls into direct
+                                                ones
+
+  --discard-global-effects                      discards global effect info
+
+  --duplicate-function-elimination              removes duplicate functions
+
+  --duplicate-import-elimination                removes duplicate imports
+
+  --dwarfdump                                   dump DWARF debug info sections
+                                                from the read binary
+
+  --emit-target-features                        emit the target features section
+                                                in the output
+
+  --extract-function                            leaves just one function (useful
+                                                for debugging)
+
+  --extract-function-index                      leaves just one function
+                                                selected by index
+
+  --flatten                                     flattens out code, removing
+                                                nesting
+
+  --fpcast-emu                                  emulates function pointer casts,
+                                                allowing incorrect indirect
+                                                calls to (sometimes) work
+
+  --func-metrics                                reports function metrics
+
+  --generate-dyncalls                           generate dynCall fuctions used
+                                                by emscripten ABI
+
+  --generate-global-effects                     generate global effect info
+                                                (helps later passes)
+
+  --generate-i64-dyncalls                       generate dynCall functions used
+                                                by emscripten ABI, but only for
+                                                functions with i64 in their
+                                                signature (which cannot be
+                                                invoked via the wasm table
+                                                without JavaScript BigInt
+                                                support).
+
+  --generate-stack-ir                           generate Stack IR
+
+  --global-refining                             refine the types of globals
+
+  --gsi                                         globally optimize struct values
+
+  --gto                                         globally optimize GC types
+
+  --gufa                                        Grand Unified Flow Analysis:
+                                                optimize the entire program
+                                                using information about what
+                                                content can actually appear in
+                                                each location
+
+  --gufa-optimizing                             GUFA plus local optimizations in
+                                                functions we modified
+
+  --heap2local                                  replace GC allocations with
+                                                locals
+
+  --i64-to-i32-lowering                         lower all uses of i64s to use
+                                                i32s instead
+
+  --inline-main                                 inline __original_main into main
+
+  --inlining                                    inline functions (you probably
+                                                want inlining-optimizing)
+
+  --inlining-optimizing                         inline functions and optimizes
+                                                where we inlined
+
+  --instrument-locals                           instrument the build with code
+                                                to intercept all loads and
+                                                stores
+
+  --instrument-memory                           instrument the build with code
+                                                to intercept all loads and
+                                                stores
+
+  --intrinsic-lowering                          lower away binaryen intrinsics
+
+  --jspi                                        wrap imports and exports for
+                                                JavaScript promise integration
+
+  --legalize-js-interface                       legalizes i64 types on the
+                                                import/export boundary
+
+  --legalize-js-interface-minimally             legalizes i64 types on the
+                                                import/export boundary in a
+                                                minimal manner, only on things
+                                                only JS will call
+
+  --licm                                        loop invariant code motion
+
+  --limit-segments                              attempt to merge segments to fit
+                                                within web limits
+
+  --local-cse                                   common subexpression elimination
+                                                inside basic blocks
+
+  --local-subtyping                             apply more specific subtypes to
+                                                locals where possible
+
+  --log-execution                               instrument the build with
+                                                logging of where execution goes
+
+  --memory-packing                              packs memory into separate
+                                                segments, skipping zeros
+
+  --memory64-lowering                           lower loads and stores to a
+                                                64-bit memory to instead use a
+                                                32-bit one
+
+  --merge-blocks                                merges blocks to their parents
+
+  --merge-locals                                merges locals when beneficial
+
+  --merge-similar-functions                     merges similar functions when
+                                                benefical
+
+  --metrics                                     reports metrics
+
+  --minify-imports                              minifies import names (only
+                                                those, and not export names),
+                                                and emits a mapping to the
+                                                minified ones
+
+  --minify-imports-and-exports                  minifies both import and export
+                                                names, and emits a mapping to
+                                                the minified ones
+
+  --minify-imports-and-exports-and-modules      minifies both import and export
+                                                names, and emits a mapping to
+                                                the minified ones, and minifies
+                                                the modules as well
+
+  --mod-asyncify-always-and-only-unwind         apply the assumption that
+                                                asyncify imports always unwind,
+                                                and we never rewind
+
+  --mod-asyncify-never-unwind                   apply the assumption that
+                                                asyncify never unwinds
+
+  --name-types                                  (re)name all heap types
+
+  --nm                                          name list
+
+  --once-reduction                              reduces calls to code that only
+                                                runs once
+
+  --optimize-added-constants                    optimizes added constants into
+                                                load/store offsets
+
+  --optimize-added-constants-propagate          optimizes added constants into
+                                                load/store offsets, propagating
+                                                them across locals too
+
+  --optimize-for-js                             early optimize of the
+                                                instruction combinations for js
+
+  --optimize-instructions                       optimizes instruction
+                                                combinations
+
+  --optimize-stack-ir                           optimize Stack IR
+
+  --pick-load-signs                             pick load signs based on their
+                                                uses
+
+  --poppify                                     Tranform Binaryen IR into Poppy
+                                                IR
+
+  --post-emscripten                             miscellaneous optimizations for
+                                                Emscripten-generated code
+
+  --precompute                                  computes compile-time
+                                                evaluatable expressions
+
+  --precompute-propagate                        computes compile-time
+                                                evaluatable expressions and
+                                                propagates them through locals
+
+  --remove-imports                              removes imports and replaces
+                                                them with nops
+
+  --remove-memory                               removes memory segments
+
+  --remove-non-js-ops                           removes operations incompatible
+                                                with js
+
+  --remove-unused-brs                           removes breaks from locations
+                                                that are not needed
+
+  --remove-unused-module-elements               removes unused module elements
+
+  --remove-unused-names                         removes names from locations
+                                                that are never branched to
+
+  --remove-unused-nonfunction-module-elements   removes unused module elements
+                                                that are not functions
+
+  --reorder-functions                           sorts functions by access
+                                                frequency
+
+  --reorder-locals                              sorts locals by access frequency
+
+  --rereloop                                    re-optimize control flow using
+                                                the relooper algorithm
+
+  --roundtrip                                   write the module to binary, then
+                                                read it
+
+  --rse                                         remove redundant local.sets
+
+  --safe-heap                                   instrument loads and stores to
+                                                check for invalid behavior
+
+  --set-globals                                 sets specified globals to
+                                                specified values
+
+  --signature-pruning                           remove params from function
+                                                signature types where possible
+
+  --signature-refining                          apply more specific subtypes to
+                                                signature types where possible
+
+  --simplify-globals                            miscellaneous globals-related
+                                                optimizations
+
+  --simplify-globals-optimizing                 miscellaneous globals-related
+                                                optimizations, and optimizes
+                                                where we replaced global.gets
+                                                with constants
+
+  --simplify-locals                             miscellaneous locals-related
+                                                optimizations
+
+  --simplify-locals-nonesting                   miscellaneous locals-related
+                                                optimizations (no nesting at
+                                                all; preserves flatness)
+
+  --simplify-locals-nostructure                 miscellaneous locals-related
+                                                optimizations (no structure)
+
+  --simplify-locals-notee                       miscellaneous locals-related
+                                                optimizations (no tees)
+
+  --simplify-locals-notee-nostructure           miscellaneous locals-related
+                                                optimizations (no tees or
+                                                structure)
+
+  --souperify                                   emit Souper IR in text form
+
+  --souperify-single-use                        emit Souper IR in text form
+                                                (single-use nodes only)
+
+  --spill-pointers                              spill pointers to the C stack
+                                                (useful for Boehm-style GC)
+
+  --ssa                                         ssa-ify variables so that they
+                                                have a single assignment
+
+  --ssa-nomerge                                 ssa-ify variables so that they
+                                                have a single assignment,
+                                                ignoring merges
+
+  --stack-check                                 enforce limits on llvm's
+                                                __stack_pointer global
+
+  --strip                                       deprecated; same as strip-debug
+
+  --strip-debug                                 strip debug info (including the
+                                                names section)
+
+  --strip-dwarf                                 strip dwarf debug info
+
+  --strip-producers                             strip the wasm producers section
+
+  --strip-target-features                       strip the wasm target features
+                                                section
+
+  --stub-unsupported-js                         stub out unsupported JS
+                                                operations
+
+  --symbolmap                                   (alias for print-function-map)
+
+  --trap-mode-clamp                             replace trapping operations with
+                                                clamping semantics
+
+  --trap-mode-js                                replace trapping operations with
+                                                js semantics
+
+  --type-refining                               apply more specific subtypes to
+                                                type fields where possible
+
+  --untee                                       removes local.tees, replacing
+                                                them with sets and gets
+
+  --vacuum                                      removes obviously unneeded code
+
